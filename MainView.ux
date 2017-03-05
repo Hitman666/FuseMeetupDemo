@@ -1,0 +1,30 @@
+<App>
+	<Page Background="#0099CC">
+		<JavaScript>
+	    var Observable = require("FuseJS/Observable");
+
+	    var data = Observable();
+
+	    fetch('http://nikola-breznjak.com/_testings/mecoders.json')
+	        .then(function(response) { return response.json(); })
+	        .then(function(responseObject) { 
+	        	data.value = responseObject;
+	        });
+
+	    module.exports = {
+	        data: data
+	    };
+		</JavaScript>
+
+		<ScrollView>
+			<StackPanel>
+				<Each Items="{data.Predavaci}">
+		      <Text Value="{ime}" FontSize="22" 
+		      	TextAlignment="Center" Color="#FFF">		
+		      </Text>
+		      <Image Url="{photo}" Width="35%"/>
+		    </Each>
+			</StackPanel>
+		</ScrollView>
+	</Page>
+</App>
